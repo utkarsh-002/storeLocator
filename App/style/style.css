@@ -5,3 +5,56 @@ body {
 #map {
     height: 100vh;
 }
+
+.head {
+    font-size: 88px;
+    position: absolute;
+    z-index: 10;
+    top: 50px;
+    left: 100px;
+    color: #333333;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif; 
+}
+.search-container{
+        width: 400px;
+        height: 60px;
+        background-color: #454E53;
+        position: absolute;
+        z-index: 10;
+        left: 100px;
+        top: 160px;
+        border-radius: 30px;
+}
+
+.serach {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex: 1;
+}
+#zip-code{
+    flex: 1;
+    font-size: 25px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+}
+.serach i {
+    color: white;
+    font-size: 25px;
+}
+.store-container{
+    position: absolute;
+    z-index: 10;
+    width: 400px;
+    background-color: white;
+    top: 250px;
+    left: 100px;
+    border-radius: 30px;
+    bottom: 20px;
+}
