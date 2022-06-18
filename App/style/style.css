@@ -52,9 +52,105 @@ body {
     position: absolute;
     z-index: 10;
     width: 400px;
-    background-color: white;
+    background-color: rgba(0,0,0,.4);
     top: 250px;
     left: 100px;
     border-radius: 30px;
     bottom: 20px;
+    padding-bottom: 30px;
+    overflow-y: scroll;
+    backdrop-filter: blur(10px);
+    /* font-weight: 500; */
+    /* border-radius: 8px; */
+}
+
+.info-window{
+    min-width: 300px;
+    font-size: 18px;
+    padding: 8px;
+}
+.store-name{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0,0,0,.86);
+}
+.open-status{
+    margin-top: 6px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    color: rgba(0,0,0,.57);
+}
+.store-address, .store-phone{
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+.store-address .icon, .store-phone .icon {
+    width: 30px;
+    height: 30px;
+    background-color: #1985A1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    margin-right: 8px;
+}
+.store-phone a, .store-address{
+    text-decoration: none;
+    color: #514C4C;
+}
+.stores-list {
+    flex-grow: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.container{
+    border-bottom: 1px solid #979797;
+    display: flex;
+}
+.info{
+    flex-grow: 1;
+}
+.num-container{
+    display: flex;
+    align-items: center;
+}
+.address{
+    font-size: 21px;
+    color: white;
+    margin-top: 30px;
+}
+.address span{
+    display: block;
+}
+.phone{
+    color: #B5ADAd;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.number{
+    width: 30px;
+    height: 30px;
+    background-color: #454E53;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-bg{
+    flex-grow: 1;
+    display: flex;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    border-radius: 18px;
+    transition: all 0.2 ease-in-out;
+    cursor: pointer;
+}
+
+.container-bg:hover{
+    background-color: #cccccc87;
 }

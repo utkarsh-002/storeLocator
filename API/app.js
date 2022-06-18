@@ -2,21 +2,55 @@ const express =  require('express');
 const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
+const axios = require('axios');
 const Store = require('./models/store');
+
+app.use(function(req,res,next){
+    res.header('Access-Control-Allow-Origin',"*");
+    next();
+})
 mongoose.connect('mongodb+srv://uthekarsh:1kDXiSFq9ADCOREr@cluster0.8h2fj.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
 
 app.use(express.json({ limit: '50mb'}));
 
 app.get('/api/stores',(req,res)=> {
-    Store.find({}, (err,stores)=>{
-        if(err)
-            res.status(500).send(err);
-        else
-            res.status(200).send(stores);
-    })
+    const zipCode = req.query.zip_code;
+    
+    const googleMapsURL = "https://maps.googleapis.com/maps/api/geocode/json";
+    axios.get(googleMapsURL,{
+        params: {
+            address: zipCode,
+            key: "AIzaSyDSeMgmOnUYWMWFQ44ToU0ogkNcicsOwIc"
+        }
+    }).then((response)=>{
+        const data = response.data;
+            const coordinates = [
+                data.results[0].geometry.location.lng,
+                data.results[0].geometry.location.lat
+            ]
+            Store.find({
+                location: {
+                    $near: {
+                        $maxDistance: 3000,
+                        $geometry: {
+                            type: "Point",
+                            coordinates: coordinates
+                        }
+                    }
+                }
+            }, (err, stores)=>{
+                if(err)
+                res.status(500).send(err);
+            else
+                res.status(200).send(stores);
+            })
+        }).catch((error)=>{
+            console.log(error)
+        })
 })
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
