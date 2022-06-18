@@ -1,29 +1,63 @@
  var map;
- var ramaiah = {lat: 13.0306, lng: 77.5649};
+ var ramaiah = {lat: 34.063380, lng: -118.358080};
  var infoWindow;
  var markers = [];
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
          center: ramaiah,
-        zoom: 5
+        zoom: 11
     });
     infoWindow = new google.maps.InfoWindow();
-    getStores();
+ }
+
+ const onEnter = (e)=> {
+    if(e.key == "Enter"){
+        getStores();
+    }
  }
 
  const getStores = ()=>{
+    const zipCode = document.getElementById("zip-code").value;
+    if(!zipCode){
+        return;
+    }
     const API_URL = 'http://localhost:3000/api/stores';
-    fetch(API_URL).then((response)=>{
+    const fullUrl = `${API_URL}?zip_code=${zipCode}`;
+    fetch(fullUrl).then((response)=>{
         if(response.status == 200)
             return response.json();
         else
             throw new Error(response.status);
     }).then((data)=>{
-        searchLocationNear(data);
-        setStoreList(data);
-        setOnClickListener();
+        if(data.length> 0){
+            clearLocations();
+            searchLocationNear(data);
+            setStoreList(data);
+            setOnClickListener();
+        }
+        else{
+            clearLocations();
+            noStoresFound();
+        }
+        
     })
  }
+
+const clearLocations = () =>{
+    infoWindow.close();
+    for(var i =0;i<markers.length;i++){
+        markers[i].setMap(null);
+    }
+    markers.length = 0;
+}
+
+const noStoresFound = () => {
+    const html = `
+        <div class= "no-stores-found">No Stores Found
+        </div>
+    `
+    document.querySelector('.stores-list').innerHTML = html;
+}
 
  const setOnClickListener = ()=>{
     let storeElements = document.querySelectorAll('.container');

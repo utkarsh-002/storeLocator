@@ -154,3 +154,30 @@ body {
 .container-bg:hover{
     background-color: #cccccc87;
 }
+
+.intro {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.enter-zip {
+    color: lightgray ;
+    font-size: 24px;
+}
+
+.find-stores {
+    color: rgb(7, 248, 248);
+    font-size: 20px;
+}
+
+.no-stores-found {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d0d0d0;
+    font-size: 26px
+}

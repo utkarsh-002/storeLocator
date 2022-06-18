@@ -13,26 +13,16 @@
     <div class="head">Store Locator</div>
     <div class="search-container">
         <div class="serach">
-            <input id="zip-code" type="text" placeholder="Enter zip"/>
-            <i class="fa-solid fa-magnifying-glass-location"></i>
+            <input id="zip-code" type="text" onkeyup="onEnter(event)" placeholder="Enter zip"/>
+            <i class="fa-solid fa-magnifying-glass-location" onclick="getStores()"></i>
         </div>
     </div>
     <div class="store-container">
         <div class="stores-list">
-            <div class="container">
-                <div class="container-bg">
-                    <div class="info">
-                        <div class="address">
-                            <span>lorem Ipsum</span>
-                            <span>lorem Ipsum</span>
-                        </div>
-                        <div class="phone">7878890-88678</div>
-                    </div>
-                    <div class="num-container">
-                     <div class="number">1</div>
-                    </div>
-                </div>
-            </div>
+           <div class="intro">
+            <span class="enter-zip">Enter zip code</span>
+            <span class="find-stores">find Stores near you</span>
+           </div>
         </div>
     </div>
     <script src="js/index.js" async defer></script>

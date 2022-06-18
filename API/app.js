@@ -4,6 +4,9 @@ const app = express();
 const port = 3000;
 const axios = require('axios');
 const Store = require('./models/store');
+const GoogleMapsService = require('./services/googleMapsServices');
+const googleMapsServices = new GoogleMapsService();
+require('dotenv').config();
 
 app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin',"*");
@@ -19,19 +22,7 @@ app.use(express.json({ limit: '50mb'}));
 
 app.get('/api/stores',(req,res)=> {
     const zipCode = req.query.zip_code;
-    
-    const googleMapsURL = "https://maps.googleapis.com/maps/api/geocode/json";
-    axios.get(googleMapsURL,{
-        params: {
-            address: zipCode,
-            key: "AIzaSyDSeMgmOnUYWMWFQ44ToU0ogkNcicsOwIc"
-        }
-    }).then((response)=>{
-        const data = response.data;
-            const coordinates = [
-                data.results[0].geometry.location.lng,
-                data.results[0].geometry.location.lat
-            ]
+    googleMapsServices.getCoordinates(zipCode).then((coordinates)=>{
             Store.find({
                 location: {
                     $near: {
