@@ -5,9 +5,16 @@
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
          center: ramaiah,
-        zoom: 11
+        zoom: 12
     });
-    infoWindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+        position: ramaiah,
+         map: map,
+         label: '$'
+        });
+        infoWindow = new google.maps.InfoWindow();
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
  }
 
  const onEnter = (e)=> {
@@ -131,4 +138,13 @@ const noStoresFound = () => {
         infoWindow.open(map, marker);
     })
     markers.push(marker);
+ };
+
+ const currLocation = ()=> {
+    if(navigator.geolocation)
+                navigator.geolocation.getCurrentPosition(function(position){
+                    let curr = {lat:position.coords.latitude,lng:position.coords.longitude}
+                    ramaiah = curr;
+                    initMap();
+                });
  };

@@ -19,10 +19,11 @@ class googleMaps {
         }).catch((error)=>{
             throw new Error(error);
         });
-
         return coordinates;
-        
      }
+
+
+
 }
 
 module.exports = googleMaps;

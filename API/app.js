@@ -36,8 +36,10 @@ app.get('/api/stores',(req,res)=> {
             }, (err, stores)=>{
                 if(err)
                 res.status(500).send(err);
-            else
+            else{
+                
                 res.status(200).send(stores);
+            }
             })
         }).catch((error)=>{
             console.log(error)

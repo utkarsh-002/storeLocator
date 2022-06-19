@@ -181,3 +181,13 @@ body {
     color: #d0d0d0;
     font-size: 26px
 }
+
+.curr {
+    position: absolute;
+    z-index: 20;
+    bottom: 20px;
+    left: 20px;
+}
+.curr i{
+    font-size: 35px;
+}
