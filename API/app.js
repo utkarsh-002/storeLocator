@@ -12,7 +12,7 @@ app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin',"*");
     next();
 })
-mongoose.connect('mongodb+srv://uthekarsh:1kDXiSFq9ADCOREr@cluster0.8h2fj.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://uthekarsh:utkarsh123@cluster0.8h2fj.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
